@@ -965,6 +965,11 @@ class Events
 		// set the date
 		$newHeader->date = $event['startDate']->format('d-m-Y H:i');
 
+		// maybe instead of using an array of date/times
+		// I can keep the path correct, insert the page into
+		// the stack while pointing at a template path somehow?
+		//
+
 		// set a fake path
 		$path = $page->path();
 		$newPath = $path . '-' . $event['token'];

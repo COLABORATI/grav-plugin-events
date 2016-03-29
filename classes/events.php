@@ -896,6 +896,8 @@ class Events
 
 		foreach( $pageList as $newPage )
 		{
+			//dump($newPage->route());
+			//dump($newPage->path());
 			$pages->addPage($newPage, $newPage->route());
 			$taxonomy->addTaxonomy($newPage, $page->taxonomy());
 		}
@@ -956,7 +958,7 @@ class Events
 		$newPage->slug($newSlug);
 
 		// set a new route
-		$newRoute = $route . '/evt:' . $event['token'];
+		$newRoute = $route . '-' . $event['token'];
 		$newPage->route($newRoute);
 		$newPage->routeAliases($newRoute);
 		//$newPage->rawRoute($newRoute);
@@ -969,6 +971,7 @@ class Events
 		// I can keep the path correct, insert the page into
 		// the stack while pointing at a template path somehow?
 		//
+
 
 		// set a fake path
 		$path = $page->path();

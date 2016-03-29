@@ -208,11 +208,26 @@ class EventsPlugin extends Plugin
 	 *
 	 * @return void
 	 */
-	public function onPageInitialized()
+	public function onPageInitialized(Event $event)
 	{
 		// setup
 		$page = $this->grav['page'];
+		$pages = $this->grav['pages'];
 
+		if ($page->template() == 'error') {
+			$uri = $_SERVER['REQUEST_URI'];
+			$uris = explode('/', $uri);
+
+			if ($uris[1] = 'events') {
+				$tokens = explode('-', $uris[2]);
+				$token = end($tokens);
+
+				$uri2 = str_replace('-' . $token, '', $uri);
+				$pages->dispatch($uri2);
+
+				//$pages = $this->grav['pages'];
+			}
+		}
 		/**
 		 * Use the evt: param to serve up event date times.
 		 */
